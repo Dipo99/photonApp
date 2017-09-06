@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">CodingGridExample</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="country_arrays">
+        <item>6X5 matrix normal flow</item>
+        <item>6X5 matrix normal flow</item>
+        <item>5X3 matrix with no path50</item>
+        <item>1X5 matrix</item>
+        <item>5X1 matrix</item>
+        <item>Non numeric input, Optional</item>
+        <item>No input - Optional)</item>
+        <item>Starting with >50</item>
+        <item>One value >50</item>
+        <item>Negative values</item>
+        <item>Complete path vs. lower cost incomplete path</item>
+        <item>Longer incomplete path vs. shorter lower cost incomplete path</item>
+        <item>Large number of columns</item>
+
+    </string-array>
+
+    <string name="title_activity_shortest_path">ShortestPathActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>
