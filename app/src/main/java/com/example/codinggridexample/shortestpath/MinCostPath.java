@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-
 public class MinCostPath {
 
     private static int overflowConstant = 100;
@@ -97,54 +96,10 @@ public class MinCostPath {
 
         return minCost[x][y];
     }
- 
-    /*public static void main(String args[])
-    {
-         int grid[][]= {{3, 4, 1, 2, 8, 6},
-                        {6, 1, 8, 2, 7, 4},
-                        {5, 9, 3, 9, 9, 5},
-                        {8, 4, 1, 3, 2, 6},
-                        {3, 7, 2, 8, 6, 4}};
 
-        // int grid[][]= {{3, 4, 1, 2, 8, 6},
-        //                {6, 1, 8, 2, 7, 4},
-        //                {5, 9, 3, 9, 9, 5},
-        //                {8, 4, 1, 3, 2, 6},
-        //                {3, 7, 2, 1, 3, 3}};
-
-        // int grid[][]= {{19, 10, 19, 10, 19},
-        //                {21, 23, 20, 19, 12},
-        //                {20, 12, 20, 11, 10}};
-       // int grid[][] = {{51}};
-
-        MinCostAndPath minCostObj = minCostAndPath(grid);
-        if (minCostObj.canCross) {
-            System.out.println("Yes");
-        }
-        else {
-            System.out.println("No");
-        }
-        System.out.println(minCostObj.cost);
-        System.out.println(minCostObj.path);
-    }*/
-
- /*   public String printMatrix(String input) {
-        String print = "";
-        for (int i = 0; i < input.length; i++) {
-            for (int j = 0; j < input[i].length; j++) {
-                if (j == input[i].length - 1) {
-                    print = print.concat(String.valueOf(input[i][j]));
-                } else {
-                    print = print.concat(String.valueOf(input[i][j]).concat(" "));
-                }
-            }
-            print = print.concat("\n");
-        }
-        return print;
-    }*/
-
-    public int[][] createMatrix(String input) {
-        Log.i("inside ....","inside createMatrixmethod....");
+    public int[][] createMatrix(String input) throws NumberFormatException {
+        if(enableLogs)
+            Log.i("inside ....","inside createMatrixmethod....");
         String[] rows = input.trim().split(";");
         int rowsLength = rows.length;
         String[] cols = rows[0].trim().split(",");
@@ -153,15 +108,16 @@ public class MinCostPath {
         for (int i = 0; i < rows.length; i++) {
             String[] forEachRow = rows[i].trim().split(",");
             for (int j = 0; j < forEachRow.length; j++) {
-                matrix[i][j] = Integer.parseInt(forEachRow[j]);
+                matrix[i][j] =  Integer.parseInt(forEachRow[j]);
             }
         }
         return matrix;
     }
 
-    public String normalMatrix(String input){
+    public String normalMatrix(String input) throws NumberFormatException{
         if(enableLogs)
             Log.i("inside normalMatrix....","inside normalMatrix....");
+
         int[][] matrix = createMatrix(input);
         routePath = new HashMap<String,Integer>();
         if(enableLogs)
@@ -199,7 +155,12 @@ public class MinCostPath {
                 previousValue=0;
             } else {
                 if (row == 0) {
-                    smallest = smallestValue(input[input.length - 1][col], input[row][col], input[row + 1][col]);
+                    if(input.length == 1){
+                        smallest = smallestValue(input[input.length - 1][col], input[0][col], input[0][col]);
+                    }else{
+                        smallest = smallestValue(input[input.length - 1][col], input[row][col], input[row + 1][col]);
+                    }
+
                     if (smallest.equals("first")) {
                         newKey = String.valueOf(input.length);
                         newValue = input[input.length - 1][col];
@@ -208,7 +169,12 @@ public class MinCostPath {
                         newValue = input[row][col];
                     } else if (smallest.equals("third")) {
                         newKey = String.valueOf(row + 2);
-                        newValue = input[row + 1][col];
+                        if(input.length == 1){
+                            newValue = input[0][col];
+                        }else{
+                            newValue = input[row + 1][col];
+                        }
+
                     }
                 } else if (row == input.length - 1) {
                     smallest = smallestValue(input[row - 1][col], input[row][col], input[0][col]);
@@ -273,6 +239,10 @@ public class MinCostPath {
         //System.out.println(a+"  "+b+"   "+c);
         if(enableLogs)
             Log.i("inside ....","inside displayFormat....");
+
+        if(a == b && b == c){
+            return "first";
+        }
         if (a < b) {
             if (a < c) {
                 return "first";
@@ -305,10 +275,7 @@ public class MinCostPath {
                     smallestPath = temp.trim();
                 }
             }
-//            System.out.println(reachedTarget);
-//            System.out.println(smallestPath);
-//            System.out.println(matrix[0].length);
-//            System.out.println(smallestPath.trim().split(" ").length );
+
             if (smallestPath.trim().split(" ").length == matrix[0].length) {
                 reachedTarget = true;
             }

@@ -30,26 +30,7 @@ Pattern p;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-       /* // set up toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        //set up floating action button
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-        // shortest path with grid show.
-
-        //  Spinner spinner = (Spinner) findViewById(R.id.spinner);
         final MinCostPath matrixClass = new MinCostPath();
-
         final EditText inputTV = (EditText) findViewById(R.id.input);
         inputTV.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
         final TextView outputTV = (TextView) findViewById(R.id.output);
@@ -58,7 +39,6 @@ Pattern p;
         hint.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
 
         final Button btnSubmit = (Button) findViewById(R.id.btnSubmit);
-
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,31 +77,3 @@ Pattern p;
         return super.onOptionsItemSelected(item);
     }
 }
-
-        /*
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(getApplicationContext(),""+position,Toast.LENGTH_LONG).show();
-            inputTV.setText("");
-
-                int count = 0;
-
-                while(m.find()) {
-                    count++;
-                    System.out.println("Match number "+count);
-                    System.out.println("start(): "+m.start());
-                    System.out.println("end(): "+m.end());
-
-                }
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
-*/

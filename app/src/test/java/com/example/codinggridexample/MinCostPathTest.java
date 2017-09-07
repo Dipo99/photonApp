@@ -1,5 +1,5 @@
 package com.example.codinggridexample;
-import android.R;
+
 import com.example.codinggridexample.shortestpath.MinCostPath;
 
 import org.junit.Test;
@@ -215,7 +215,6 @@ public class MinCostPathTest {
         //Arrange
         int[][] matrix = {
                 { }
-
         };
        MinCostPath matrixClass = new MinCostPath();
 
@@ -231,7 +230,6 @@ public class MinCostPathTest {
         System.out.println(matrixClass.totalPath);
         assertEquals(expectedsmallestPath, matrixClass.smallestPath);
     }
-
 
     //sample 12
     @Test
@@ -259,54 +257,43 @@ public class MinCostPathTest {
     }
 
 
-//    //sample 4
-//    @Test
-//    public void normalMatrixTest_sample4(){
-//       //Arrange
-//        int[][] matrix = {
-//               {5,8,5,3,5},
-//        };
-    // this test case is not working due the code is adding up new row in the matrix and its making running new internal calls
+    //sample 4
+    @Test
+   public void normalMatrixTest_sample4(){
+       //Arrange
+        int[][] matrix = {
+               {5,8,5,3,5},
+        };
+     //this test case is not working due the code is adding up new row in the matrix and its making running new internal calls
 
-//       MinCostPath matrixClass = new MinCostPath();
-//
-//        //Act
-//        matrixClass.normalMatrix(matrix);
-//
-//        //Assert
-//        boolean expectedreachedTarget = true;
-//        int expectedTotalPath = 26;
-//        String expectedsmallestPath = "1 1 1 1 1";
-//        assertEquals(expectedreachedTarget, matrixClass.reachedTarget);
-//        assertEquals(expectedTotalPath, matrixClass.totalPath);
-//        assertEquals(expectedsmallestPath, matrixClass.smallestPath);
-//    }
+       MinCostPath matrixClass = new MinCostPath();
 
-//    //    //sample 6
-//   @Test
-//    public void normalMatrixTest_sample6(){
-////       //Arrange
-//
-//        int[][] matrix = {
-//      //{5,4,H},
-//      //{8,M,7},
-//      {5,7,5}
-//       };
-    //the alphabets H,M are not recognised . 
-//
-//      MinCostPath matrixClass = new MinCostPath();
-//
-//       //Act
-//        matrixClass.normalMatrix(matrix);
-////
-//        //Assert
-//        boolean expectedreachedTarget = false;
-//        int expectedTotalPath = 0;
-//       String expectedsmallestPath = "";
-//        assertEquals(expectedreachedTarget, matrixClass.reachedTarget);
-//        assertEquals(expectedTotalPath, matrixClass.totalPath);
-//        assertEquals(expectedsmallestPath, matrixClass.smallestPath);
-//    }
+        //Act
+        matrixClass.normalMatrix(matrix);
+
+        //Assert
+        boolean expectedreachedTarget = true;
+        int expectedTotalPath = 26;
+        String expectedsmallestPath = "1 1 1 1 1";
+        assertEquals(expectedreachedTarget, matrixClass.reachedTarget);
+        assertEquals(expectedTotalPath, matrixClass.totalPath);
+        assertEquals(expectedsmallestPath, matrixClass.smallestPath);
+    }
+
+   //sample 6
+   @Test(expected = NumberFormatException.class)
+    public void normalMatrixTest_sample6() {
+       //Arrange
+       String inputData = "5,4,H;8,M,7;5,7,5";
+
+       MinCostPath matrixClass = new MinCostPath();
+
+        //Act
+        matrixClass.normalMatrix(inputData);
+
+        //Assert
+       //throws exception
+    }
 
     //Sample 3
     @Test
@@ -322,7 +309,7 @@ public class MinCostPathTest {
         //Act
         matrixClass.normalMatrix(matrix);
 
-//        //Assert
+       //Assert
         boolean expectedreachedTarget = false;
         int expectedTotalPath = 0;
        String expectedsmallestPath = "";
@@ -333,21 +320,4 @@ public class MinCostPathTest {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
