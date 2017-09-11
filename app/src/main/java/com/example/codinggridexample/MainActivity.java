@@ -43,14 +43,19 @@ Pattern p;
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
 
-                if (!TextUtils.isEmpty(inputTV.getText().toString().trim())) {
+                    if (!TextUtils.isEmpty(inputTV.getText().toString().trim())) {
 
-                    outputTV.setText(matrixClass.normalMatrix(inputTV.getText().toString()));
-                } else {
+                        outputTV.setText(matrixClass.normalMatrix(inputTV.getText().toString()));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Invalid Matrix", Toast.LENGTH_SHORT).show();
+                    }
+                }catch (NumberFormatException e){
+                    System.out.println("You entered ivalid data." );
                     Toast.makeText(getApplicationContext(), "Invalid Matrix", Toast.LENGTH_SHORT).show();
                 }
-            }
+        }
         });
       //  hint.setText("Each row seperated by Semi-colon(;) and Each Column sepereated by Comma(,)");
     }
@@ -60,7 +65,7 @@ Pattern p;
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
+   }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -1,7 +1,7 @@
 package com.example.codinggridexample.shortestpath;
 
 /**
- * Created by chayanchowdhury on 27/08/17.
+ * Created by Divya on 27/08/17.
  */
 
 class MinCostAndPath {
