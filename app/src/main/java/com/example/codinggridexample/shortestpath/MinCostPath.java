@@ -20,6 +20,13 @@ public class MinCostPath {
     public boolean reachedTarget = false;
     public boolean enableLogs = false;
 
+    /*
+    minCostPath method accepts
+    @Param int [][]
+    It accepts an integer 2d array.
+    It will calculate the Minimum cost and
+    minimumPath, and returns the MinCostAndPath object
+     */
     private static MinCostAndPath minCostAndPath(int grid[][]) {
         int numRows = grid.length;
         int numCols = grid[0].length;
@@ -45,7 +52,11 @@ public class MinCostPath {
 
         return new MinCostAndPath(canCross, minTillNow, minPath[minX][numCols - 1]);
     }   
- 
+
+    /*
+    minCostAndPathHelper returns the Minimum cost value
+    @return type int
+     */
     private static int minCostAndPathHelper(int grid[][], int minCost[][], String minPath[][], int x, int y) {
         int numRows = grid.length;
         int numCols = grid[0].length;
@@ -96,6 +107,13 @@ public class MinCostPath {
         return minCost[x][y];
     }
 
+    /*
+    createMatrix method takes a String as an input parameter
+    from which it gets all the integers seperated by ','
+    then it will build a matrix of n*n
+    @Param String input
+    @return type int[][]
+     */
     public int[][] createMatrix(String input) throws NumberFormatException {
         if(enableLogs)
             Log.i("inside ....","inside createMatrixmethod....");
@@ -113,6 +131,7 @@ public class MinCostPath {
         return matrix;
     }
 
+
     public String normalMatrix(String input) throws NumberFormatException{
         if(enableLogs)
             Log.i("inside normalMatrix....","inside normalMatrix....");
@@ -129,6 +148,7 @@ public class MinCostPath {
         return displayFormat(routePath,matrix);
     }
 
+
     public String normalMatrix(int[][] matrix){
         if(enableLogs)
             Log.i("inside normalMatrix....","inside normalMatrix....");
@@ -143,6 +163,15 @@ public class MinCostPath {
         return displayFormat(routePath,matrix);
     }
 
+
+    /*
+    shortestPath method accepts
+    @params int[][],int,int,String
+    This method compares the values og the matrix with the key and
+    adds the shortest path to the HashMap and then finally the hashMap object
+    is returned
+    @return type HashMap<String,Integer>
+     */
     private HashMap<String,Integer> shortestPath(int[][] input, int row, int col, String key) {
         if(enableLogs)
             Log.i("inside shortestPath....","inside shortestPath....");
@@ -234,6 +263,14 @@ public class MinCostPath {
         return routePath;
     }
 
+    /*
+    smallestValue methods accepts
+    @params int,int,int
+    This methods takes 3 integer values and return
+    the smallest integer
+    @return type String
+
+     */
     public String smallestValue(int a, int b, int c) {
         //System.out.println(a+"  "+b+"   "+c);
         if(enableLogs)
@@ -256,6 +293,13 @@ public class MinCostPath {
             }
         }
     }
+
+    /*
+    displayFormat method accepts
+    @params HashMap<String,Integer>
+    This method takes the shortestPath values from the HashMap
+    and formats the way it should display
+     */
     public String displayFormat(HashMap<String, Integer> listOfRoutes, int[][] matrix) {
         if(enableLogs)
             Log.i("inside ....","inside displayFormat....");
@@ -288,6 +332,12 @@ public class MinCostPath {
 
     }
 
+    /*
+    shortestPathforColMatrix method returns the
+    shortestpath for a single coulumn matrix.
+    @Params String input[integers seperated by ',']
+    @return type String
+     */
     public String shortestPathforColMatrix(String input) {
         int[][] matrix = createMatrix(input);
 
@@ -304,6 +354,12 @@ public class MinCostPath {
         return displayFormat(routePath, matrix);
     }
 
+    /*
+   shortestPathforRowMatrix method returns the
+   shortestpath for a single row matrix.
+   @Params String input[integers seperated by ',']
+   @return type String
+    */
     public String shortestPathforRowMatrix(String input) {
 
         int[][] matrix = createMatrix(input);
@@ -327,6 +383,12 @@ public class MinCostPath {
         return displayFormat(routePath, matrix);
     }
 
+    /*
+ negativeValuedMatrixShortestPath method returns the
+ shortestpath for a negative valued matrix.
+ @Params String input[integers seperated by ',']
+ @return type String
+  */
     public String negativeValuedMatrixShortestPath(String input){
         int[][] matrix = createMatrix(input);
         routePath = new HashMap<String,Integer>();
@@ -336,6 +398,12 @@ public class MinCostPath {
         return displayFormat(routePath,matrix);
     }
 
+    /*
+largeNumberOfColumns method returns the
+shortestpath for a large number of columns  matrix.
+@Params String input[integers seperated by ',']
+@return type String
+ */
     public String largeNumberOfColumns(String input){
         int[][] matrix = createMatrix(input);
         routePath = new HashMap<String,Integer>();
@@ -344,6 +412,13 @@ public class MinCostPath {
         }
         return displayFormat(routePath,matrix);
     }
+
+    /*
+    firstElementsAboveFifty method checks if every column
+   's first element is > 50 or not.
+   If all the first elements in each column is > 50, then the
+   routePath is considered as empty or null
+     */
 
     public String firstElementsAboveFifty(String input) {
         int[][] matrix = createMatrix(input);
@@ -359,6 +434,7 @@ public class MinCostPath {
         return displayFormat(routePath, matrix);
     }
 
+
     public String oneValueAboveFifty(String input) {
         int[][] matrix = createMatrix(input);
         routePath = new HashMap<String,Integer>();
@@ -368,6 +444,12 @@ public class MinCostPath {
         return displayFormat(routePath,matrix);
     }
 
+    /*
+    noInputMatrix method checks the input string and
+    if it is empty, then returns a appropriate message
+    else calls the normalMatrix method to construct an
+    Integer array
+     */
     public String noInputMatrix(String input){
         if(input=="")
             return "Invalid Matrix";
